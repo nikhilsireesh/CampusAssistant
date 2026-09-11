@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1789096020551,
+      "tag": "0000_colossal_aaron_stack",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789100472353,
+      "tag": "0001_fine_silver_samurai",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1789106099622,
+      "tag": "0002_parallel_dark_beast",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1789106149171,
+      "tag": "0003_broad_sally_floyd",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1789106183873,
+      "tag": "0004_mean_brother_voodoo",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1789109251270,
+      "tag": "0005_aberrant_celestials",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1789111197940,
+      "tag": "0006_lyrical_namorita",
+      "breakpoints": true
+    }
+  ]
+}
