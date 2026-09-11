@@ -1,0 +1,18 @@
+{
+  "services": {
+    "mic-campus-assistant": {
+      "root": ".",
+      "framework": "nextjs",
+      "buildCommand": "npm ci && npm run build"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": {
+        "type": "service",
+        "service": "mic-campus-assistant"
+      }
+    }
+  ]
+}
