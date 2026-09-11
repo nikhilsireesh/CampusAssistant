@@ -1,0 +1,36 @@
+# Render Blueprint — deploys the web app only. The database stays on Neon
+# (already seeded); DATABASE_URL just needs to be pointed at it below.
+#
+# To deploy: Render dashboard → New → Blueprint → select this repo. Render
+# reads this file and provisions everything below in one go. Values marked
+# `sync: false` are prompted for once in the Render dashboard and then
+# stored as regular secrets — they are never committed to the repo.
+services:
+  - type: web
+    name: mic-campus-assistant
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_VERSION
+        value: 22.11.0
+      - key: NODE_ENV
+        value: production
+      # Your existing Neon connection string (from .env.local /
+      # Neon project → Connect). Paste the pooled connection string.
+      - key: DATABASE_URL
+        sync: false
+      # Random per-deploy secret for signing session cookies — Render
+      # generates this itself, no value needed from you.
+      - key: AUTH_SECRET
+        generateValue: true
+      # Optional: leave unset in the dashboard to run in rule-based
+      # fallback mode (no LLM calls). Get a free key at
+      # https://aistudio.google.com/app/apikey
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash

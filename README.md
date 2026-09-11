@@ -17,6 +17,7 @@ An AI-powered campus support platform built for **DVR & Dr. HS MIC College of Te
 - [Gemini (AI) setup](#gemini-ai-setup)
 - [Database seeding](#database-seeding)
 - [Development commands](#development-commands)
+- [Deploying to Render](#deploying-to-render)
 - [Demo credentials](#demo-credentials)
 - [AI architecture](#ai-architecture)
 - [Security notes](#security-notes)
@@ -165,6 +166,25 @@ npm run db:generate   # generate a new Drizzle migration from schema changes
 npm run db:migrate    # apply migrations to DATABASE_URL
 npm run db:seed       # reset + reseed demo data
 ```
+
+## Deploying to Render
+
+The repo includes a [`render.yaml`](render.yaml) Blueprint that provisions the web
+service for you — the database itself stays on Neon (it already has the seeded
+demo data; Render's free Postgres plan is deleted after 30 days, which isn't a
+good fit for a database you want to keep).
+
+1. Push the repo to GitHub (already done if you're reading this from there).
+2. In the [Render dashboard](https://dashboard.render.com), click **New → Blueprint** and select this repo. Render reads `render.yaml` and sets up the web service automatically.
+3. Fill in the two prompted secrets:
+   - `DATABASE_URL` — your Neon **pooled** connection string (Neon project → Connect).
+   - `GEMINI_API_KEY` — optional; leave blank to run in rule-based fallback mode.
+   - `AUTH_SECRET` is generated for you automatically — no action needed.
+4. Click **Apply**. First deploy takes a few minutes (`npm ci && npm run build`, then `npm start`).
+
+The free plan spins the service down after 15 minutes of inactivity and takes
+~30-60s to wake back up on the next request — fine for a demo, upgrade to a
+paid plan for an always-on instance.
 
 ## Demo credentials
 
